@@ -12,7 +12,7 @@ class Inference {
   inferred_image: string;
 
   @Column()
-  inference: JSON;
+  inference: string;
 
   @Column()
   created_at: string;

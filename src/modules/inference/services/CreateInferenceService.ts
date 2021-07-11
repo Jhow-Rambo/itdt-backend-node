@@ -5,7 +5,7 @@ import { InferenceRepository } from '../typeorm/repositories/InferencesRepositor
 interface IRequest {
   normal_image: string;
   inferred_image: string;
-  inference: JSON;
+  inference: string;
   created_at: string;
 }
 
