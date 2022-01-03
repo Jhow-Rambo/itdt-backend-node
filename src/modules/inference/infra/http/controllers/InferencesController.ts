@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import CreateInferenceService from '../services/CreateInferenceService';
-import ListInferenceService from '../services/ListInferenceService';
+import CreateInferenceService from '../../../services/CreateInferenceService';
+import ListInferenceService from '../../../services/ListInferenceService';
 
 export default class ProductController {
   public async index(request: Request, response: Response): Promise<Response> {

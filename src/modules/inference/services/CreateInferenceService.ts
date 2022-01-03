@@ -1,6 +1,6 @@
 import { getCustomRepository } from 'typeorm';
-import Inference from '../typeorm/entities/Inference';
-import { InferenceRepository } from '../typeorm/repositories/InferencesRepository';
+import Inference from '../infra/typeorm/entities/Inference';
+import { InferenceRepository } from '../infra/typeorm/repositories/InferencesRepository';
 
 interface IRequest {
   normal_image: string;

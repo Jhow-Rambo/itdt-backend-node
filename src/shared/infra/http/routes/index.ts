@@ -1,4 +1,4 @@
-import inferencesRouter from '@modules/inference/routes/inferences.routes';
+import inferencesRouter from '@modules/inference/infra/http/routes/inferences.routes';
 import { Router } from 'express';
 
 const routes = Router();

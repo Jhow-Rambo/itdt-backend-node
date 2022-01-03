@@ -1,18 +1,20 @@
 import { Router } from 'express';
 import InferencesController from '../controllers/InferencesController';
 import { celebrate, Joi, Segments } from 'celebrate';
-import { UploadImages } from '../middlewares/Upload-Images';
-import { AddPathImagesToBody } from '../middlewares/AddPathImagesToBody';
+import { UploadImages } from '../../../middlewares/Upload-Images';
+import { AddPathImagesToBody } from '../../../middlewares/AddPathImagesToBody';
 
 const inferencesRouter = Router();
 const inferencesController = new InferencesController();
 
 inferencesRouter.get('/', inferencesController.index);
 
+// removed two lines below
+//  UploadImages(),
+// AddPathImagesToBody(),
+
 inferencesRouter.post(
   '/',
-  UploadImages(),
-  AddPathImagesToBody(),
   celebrate({
     [Segments.BODY]: {
       normal_image: Joi.string().required(),
