@@ -1,31 +1,27 @@
-import { getCustomRepository } from 'typeorm';
-import Inference from '../infra/typeorm/entities/Inference';
-import { InferenceRepository } from '../infra/typeorm/repositories/InferencesRepository';
+import { inject, injectable } from 'tsyringe';
+import { ICreateInference } from '../domain/models/ICreateInference';
+import { IInference } from '../domain/models/IInference';
+import { IInferenceRepository } from '../domain/repositories/IInferenceRepository';
 
-interface IRequest {
-  normal_image: string;
-  inferred_image: string;
-  inference: string;
-  created_at: string;
-}
-
+@injectable()
 class CreatInferenceService {
+  constructor(
+    @inject('InferenceRepository')
+    private inferenceRepository: IInferenceRepository,
+  ) {}
+
   public async execute({
     normal_image,
     inferred_image,
     inference,
     created_at,
-  }: IRequest): Promise<Inference> {
-    const inferencesRepository = getCustomRepository(InferenceRepository);
-
-    const Inference = inferencesRepository.create({
+  }: ICreateInference): Promise<IInference> {
+    const Inference = await this.inferenceRepository.create({
       normal_image,
       inferred_image,
       inference,
       created_at,
     });
-
-    await inferencesRepository.save(Inference);
 
     return Inference;
   }

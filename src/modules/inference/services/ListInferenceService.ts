@@ -1,14 +1,18 @@
-import { getCustomRepository } from 'typeorm';
-import Inference from '../infra/typeorm/entities/Inference';
-import { InferenceRepository } from '../infra/typeorm/repositories/InferencesRepository';
+import { inject, injectable } from 'tsyringe';
+import { IInference } from '../domain/models/IInference';
+import { IInferenceRepository } from '../domain/repositories/IInferenceRepository';
 
+@injectable()
 class ListInferenceService {
-  public async execute(): Promise<Inference[]> {
-    const inferencesRepository = getCustomRepository(InferenceRepository);
+  constructor(
+    @inject('InferenceRepository')
+    private inferenceRepository: IInferenceRepository,
+  ) {}
 
-    const products = inferencesRepository.find();
+  public async execute(): Promise<IInference[]> {
+    const inferences = this.inferenceRepository.findAll();
 
-    return products;
+    return inferences;
   }
 }
 
