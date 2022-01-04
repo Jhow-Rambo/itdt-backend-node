@@ -1,8 +1,8 @@
-import { ICreateInference } from '@modules/inference/domain/models/ICreateInference';
+import { ICreateToten } from '../models/ICreateToten';
 import { IToten } from '../models/IToten';
 
 export interface ITotenRepository {
-  create(data: ICreateInference): Promise<IToten>;
+  create(data: ICreateToten): Promise<IToten>;
   findAll(): Promise<IToten[]>;
   delete(id: string): Promise<void>;
 }

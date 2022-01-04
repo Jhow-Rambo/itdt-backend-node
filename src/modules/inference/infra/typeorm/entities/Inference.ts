@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Toten } from '@modules/totens/infra/typeorm/entities/Toten';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity('inferences')
 class Inference {
@@ -10,6 +11,11 @@ class Inference {
 
   @Column()
   inferred_image: string;
+
+  @ManyToOne(() => Inference, inference => inference.toten, {
+    onDelete: 'CASCADE',
+  })
+  toten: Toten;
 
   @Column()
   inference: string;
