@@ -24,6 +24,12 @@ export class FakeTotensRepository implements ITotenRepository {
     return this.totens;
   }
 
+  public async findByName(name: string): Promise<IToten | undefined> {
+    const toten = this.totens.find(toten => toten.name === name);
+
+    return toten;
+  }
+
   public async delete(id: string): Promise<void> {
     const totenIndex = this.totens.findIndex(toten => toten.id === id);
 
