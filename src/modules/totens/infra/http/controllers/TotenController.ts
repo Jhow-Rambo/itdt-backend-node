@@ -19,7 +19,7 @@ export default class TotenController {
     return response.status(201).json(toten);
   }
 
-  public async index(request: Request, response: Response): Promise<Response> {
+  public async list(request: Request, response: Response): Promise<Response> {
     const listTotens = container.resolve(ListTotenService);
 
     const totens = await listTotens.execute();
