@@ -1,10 +1,15 @@
 import { ICreateToten } from '../domain/models/ICreateToten';
 import { IToten } from '../domain/models/IToten';
-import { FakeTotensRepository } from '@modules/totens/domain/repositories/fakes/FakeTotensRepository';
 import AppError from '@shared/errors/AppError';
+import { inject, injectable } from 'tsyringe';
+import { ITotenRepository } from '../domain/repositories/ITotenRepository';
 
+@injectable()
 class CreateTotenService {
-  constructor(private totensRepository: FakeTotensRepository) {}
+  constructor(
+    @inject('TotenRepository')
+    private totensRepository: ITotenRepository,
+  ) {}
 
   public async execute(data: ICreateToten): Promise<IToten> {
     const totenExists = await this.totensRepository.findByName(data.name);

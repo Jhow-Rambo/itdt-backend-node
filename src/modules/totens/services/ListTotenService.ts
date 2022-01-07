@@ -1,8 +1,13 @@
+import { inject, injectable } from 'tsyringe';
 import { IToten } from '../domain/models/IToten';
-import { FakeTotensRepository } from '../domain/repositories/fakes/FakeTotensRepository';
+import { ITotenRepository } from '../domain/repositories/ITotenRepository';
 
+@injectable()
 export class ListTotenService {
-  constructor(private totensRepository: FakeTotensRepository) {}
+  constructor(
+    @inject('TotenRepository')
+    private totensRepository: ITotenRepository,
+  ) {}
 
   public async execute(): Promise<IToten[]> {
     const totens = await this.totensRepository.findAll();
