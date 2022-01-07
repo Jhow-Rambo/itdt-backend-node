@@ -1,6 +1,6 @@
 import { FakeTotensRepository } from '@modules/totens/domain/repositories/fakes/FakeTotensRepository';
 import AppError from '@shared/errors/AppError';
-import { DeleteTotenService } from '../DeleteTotenService';
+import DeleteTotenService from '../DeleteTotenService';
 
 let fakeTotenRepository: FakeTotensRepository;
 let deleteToten: DeleteTotenService;

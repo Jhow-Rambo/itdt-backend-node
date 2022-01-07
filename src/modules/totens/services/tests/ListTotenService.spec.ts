@@ -1,5 +1,5 @@
 import { FakeTotensRepository } from '@modules/totens/domain/repositories/fakes/FakeTotensRepository';
-import { ListTotenService } from '../ListTotenService';
+import ListTotenService from '../ListTotenService';
 
 let fakeTotenRepository: FakeTotensRepository;
 let listToten: ListTotenService;

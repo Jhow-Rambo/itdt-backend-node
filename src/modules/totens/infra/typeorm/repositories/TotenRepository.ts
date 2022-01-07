@@ -1,6 +1,6 @@
 import { ITotenRepository } from '../../../domain/repositories/ITotenRepository';
 import { getRepository, Repository } from 'typeorm';
-import { Toten } from '../entities/Toten';
+import Toten from '../entities/Toten';
 import { ICreateToten } from '../../../domain/models/ICreateToten';
 import { IToten } from '../../../domain/models/IToten';
 

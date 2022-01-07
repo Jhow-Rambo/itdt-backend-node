@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import { ITotenRepository } from '../domain/repositories/ITotenRepository';
 
 @injectable()
-export class DeleteTotenService {
+class DeleteTotenService {
   constructor(
     @inject('TotenRepository')
     private totensRepository: ITotenRepository,
@@ -19,3 +19,5 @@ export class DeleteTotenService {
     await this.totensRepository.delete(id);
   }
 }
+
+export default DeleteTotenService;

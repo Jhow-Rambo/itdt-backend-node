@@ -3,7 +3,7 @@ import { IToten } from '../domain/models/IToten';
 import { ITotenRepository } from '../domain/repositories/ITotenRepository';
 
 @injectable()
-export class ListTotenService {
+class ListTotenService {
   constructor(
     @inject('TotenRepository')
     private totensRepository: ITotenRepository,
@@ -15,3 +15,5 @@ export class ListTotenService {
     return totens;
   }
 }
+
+export default ListTotenService;

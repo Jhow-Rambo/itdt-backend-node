@@ -1,4 +1,4 @@
-import Inference from '@modules/inference/infra/typeorm/entities/Inference';
+import Inference from '../../../../inference/infra/typeorm/entities/Inference';
 import { IToten } from '@modules/totens/domain/models/IToten';
 import {
   Column,
@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 
 @Entity('totens')
-export class Toten implements IToten {
+class Toten implements IToten {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -35,3 +35,5 @@ export class Toten implements IToten {
   @UpdateDateColumn()
   updated_at: Date;
 }
+
+export default Toten;

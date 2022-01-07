@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { ICreateToten } from '@modules/totens/domain/models/ICreateToten';
 import { ITotenRepository } from '@modules/totens/domain/repositories/ITotenRepository';
-import { Toten } from '../../../infra/typeorm/entities/Toten';
+import Toten from '../../../infra/typeorm/entities/Toten';
 import { IToten } from '../../models/IToten';
 
 export class FakeTotensRepository implements ITotenRepository {

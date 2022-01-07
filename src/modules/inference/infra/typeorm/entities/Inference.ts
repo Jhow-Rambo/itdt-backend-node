@@ -1,4 +1,4 @@
-import { Toten } from '@modules/totens/infra/typeorm/entities/Toten';
+import Toten from '../../../../totens/infra/typeorm/entities/Toten';
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity('inferences')

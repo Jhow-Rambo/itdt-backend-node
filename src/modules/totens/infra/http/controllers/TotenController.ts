@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import CreateTotenService from '@modules/totens/services/CreateTotenService';
-import { ListTotenService } from '@modules/totens/services/ListTotenService';
-import { DeleteTotenService } from '@modules/totens/services/DeleteTotenService';
+import ListTotenService from '@modules/totens/services/ListTotenService';
+import DeleteTotenService from '@modules/totens/services/DeleteTotenService';
 
 export default class TotenController {
   public async create(request: Request, response: Response): Promise<Response> {
