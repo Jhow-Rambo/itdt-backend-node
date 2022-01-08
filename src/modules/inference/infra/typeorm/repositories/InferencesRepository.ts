@@ -1,5 +1,4 @@
 import { ICreateInference } from '@modules/inference/domain/models/ICreateInference';
-import { IInference } from '@modules/inference/domain/models/IInference';
 import { IInferenceRepository } from '@modules/inference/domain/repositories/IInferenceRepository';
 import { getRepository, Repository } from 'typeorm';
 import Inference from '../entities/Inference';
@@ -11,15 +10,20 @@ export class InferenceRepository implements IInferenceRepository {
     this.ormRepository = getRepository(Inference);
   }
 
-  public async create(data: ICreateInference): Promise<IInference> {
-    const inference = this.ormRepository.create(data);
+  public async create(data: ICreateInference): Promise<Inference> {
+    const inference = this.ormRepository.create({
+      normal_image: data.normal_image,
+      inferred_image: data.inferred_image,
+      inference: data.inference,
+      totenId: data.totenId,
+    });
 
     await this.ormRepository.save(inference);
 
     return inference;
   }
 
-  public async findAll(): Promise<IInference[]> {
+  public async findAll(): Promise<Inference[] | undefined> {
     const inferences = await this.ormRepository.find();
 
     return inferences;

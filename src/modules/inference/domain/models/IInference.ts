@@ -3,5 +3,7 @@ export interface IInference {
   normal_image: string;
   inferred_image: string;
   inference: string;
-  created_at: string;
+  totenId: string;
+  created_at: Date;
+  updated_at: Date;
 }

@@ -1,5 +1,12 @@
 import Toten from '../../../../totens/infra/typeorm/entities/Toten';
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('inferences')
 class Inference {
@@ -7,12 +14,15 @@ class Inference {
   id: string;
 
   @Column()
+  totenId: string;
+
+  @Column()
   normal_image: string;
 
   @Column()
   inferred_image: string;
 
-  @ManyToOne(() => Inference, inference => inference.toten, {
+  @ManyToOne(() => Toten, toten => toten.inferences, {
     onDelete: 'CASCADE',
   })
   toten: Toten;
@@ -20,8 +30,11 @@ class Inference {
   @Column()
   inference: string;
 
-  @Column()
-  created_at: string;
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }
 
 export default Inference;

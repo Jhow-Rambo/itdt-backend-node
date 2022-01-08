@@ -4,7 +4,7 @@ import CreateInferenceService from '../../../services/CreateInferenceService';
 import ListInferenceService from '../../../services/ListInferenceService';
 
 export default class InferenceController {
-  public async index(request: Request, response: Response): Promise<Response> {
+  public async list(request: Request, response: Response): Promise<Response> {
     const listInferences = container.resolve(ListInferenceService);
 
     const inferences = await listInferences.execute();
@@ -13,8 +13,8 @@ export default class InferenceController {
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { normal_image, inferred_image, inference, created_at } =
-      request.body;
+    const { normal_image, inferred_image, inference } = request.body;
+    const { totenId } = request.params;
 
     const createInference = container.resolve(CreateInferenceService);
 
@@ -22,9 +22,9 @@ export default class InferenceController {
       normal_image,
       inferred_image,
       inference,
-      created_at,
+      totenId,
     });
 
-    return response.json(Inference);
+    return response.status(201).json(Inference);
   }
 }

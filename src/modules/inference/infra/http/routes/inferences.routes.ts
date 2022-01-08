@@ -7,20 +7,22 @@ import { AddPathImagesToBody } from '../../../middlewares/AddPathImagesToBody';
 const inferencesRouter = Router();
 const inferencesController = new InferencesController();
 
-inferencesRouter.get('/', inferencesController.index);
+inferencesRouter.get('/', inferencesController.list);
 
 // removed two lines below
 //  UploadImages(),
 // AddPathImagesToBody(),
 
 inferencesRouter.post(
-  '/',
+  '/:totenId',
   celebrate({
     [Segments.BODY]: {
       normal_image: Joi.string().required(),
       inferred_image: Joi.string().required(),
       inference: Joi.string().required(),
-      created_at: Joi.string().required(),
+    },
+    [Segments.PARAMS]: {
+      totenId: Joi.string().uuid().required(),
     },
   }),
   inferencesController.create,
