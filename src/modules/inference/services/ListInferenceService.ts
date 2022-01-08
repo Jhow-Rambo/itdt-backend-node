@@ -9,7 +9,7 @@ class ListInferenceService {
     private inferenceRepository: IInferenceRepository,
   ) {}
 
-  public async execute(): Promise<IInference[]> {
+  public async execute(): Promise<IInference[] | undefined> {
     const inferences = this.inferenceRepository.findAll();
 
     return inferences;
