@@ -12,7 +12,7 @@ class CountPeople {
   out: number;
 
   @Column()
-  data: Date;
+  date: Date;
 
   @Column()
   field_image: string;

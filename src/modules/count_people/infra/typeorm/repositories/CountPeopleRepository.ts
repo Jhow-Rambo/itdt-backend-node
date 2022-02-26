@@ -14,23 +14,27 @@ export class CountPeopleRepository implements ICountPeopleRepository {
   }
 
   public async create(data: ICreateCountPeople): Promise<ICountPeople> {
-    const countPeople = this.ormRepository.create({
+    const countPeople = {
       in: 0,
       out: 0,
-      data: data.date,
-      field_image: data.field_image,
       toten_id: data.toten_id,
-    });
+      field_image: data.field_image,
+      date: data.date,
+    };
 
-    await this.ormRepository.save(countPeople);
+    const savedCountPeople = await this.ormRepository.create(countPeople);
 
-    return countPeople;
+    return savedCountPeople;
   }
 
   public async increment(data: IIncrement): Promise<ICountPeople | undefined> {
-    await this.ormRepository.increment({ id: data.id }, 'in', 1);
+    const id = await this.ormRepository.find({
+      where: { toten_id: data.toten_id },
+    });
+    // TODO: Need to chang id[0].id to last id
+    await this.ormRepository.increment({ id: id[0].id }, 'in', 1);
 
-    return this.ormRepository.findOne(data.id);
+    return this.ormRepository.findOne(id[0].id);
   }
 
   public async decrement(data: IDecrement): Promise<ICountPeople | undefined> {

@@ -9,9 +9,19 @@ import { IIncrement } from '../../models/IIncrement';
 export class FakeCountPeopleRepository implements ICountPeopleRepository {
   private countPeople: ICountPeople[] = [];
 
+  public async findByTotenId(
+    totenId: string,
+  ): Promise<ICountPeople[] | undefined> {
+    const countPeople = this.countPeople.filter(
+      countPeople => countPeople.toten_id === totenId,
+    );
+
+    return countPeople;
+  }
+
   public async increment(data: IIncrement): Promise<ICountPeople | undefined> {
     const countPeople = this.countPeople.find(
-      countPeople => countPeople.id === data.id,
+      countPeople => countPeople.toten_id === data.toten_id,
     );
 
     if (countPeople) {
@@ -41,19 +51,9 @@ export class FakeCountPeopleRepository implements ICountPeopleRepository {
     return countPeople;
   }
 
-  public async findByTotenId(
-    totenId: string,
-  ): Promise<ICountPeople[] | undefined> {
-    const countPeople = this.countPeople.filter(
-      countPeople => countPeople.toten_id === totenId,
-    );
-
-    return countPeople;
-  }
-
   public async findByDate(date: Date): Promise<ICountPeople | undefined> {
     const countPeople = this.countPeople.find(
-      countPeople => countPeople.data === date,
+      countPeople => countPeople.date === date,
     );
 
     return countPeople;
@@ -65,7 +65,7 @@ export class FakeCountPeopleRepository implements ICountPeopleRepository {
     countPeople.id = v4();
     countPeople.in = 0;
     countPeople.out = 0;
-    countPeople.data = data.date;
+    countPeople.date = data.date;
     countPeople.field_image = data.field_image;
     countPeople.toten_id = data.toten_id;
 
