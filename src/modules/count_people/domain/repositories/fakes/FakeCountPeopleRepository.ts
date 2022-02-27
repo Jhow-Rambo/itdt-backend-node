@@ -1,7 +1,6 @@
 import { v4 } from 'uuid';
 import { ICountPeopleRepository } from '../ICountPeopleRepository';
 import { ICountPeople } from '../../models/ICountPeople';
-import { IDecrement } from '../../models/IDecrement';
 import { ICreateCountPeople } from '../../models/ICreateCountPeople';
 import CountPeople from '@modules/count_people/infra/typeorm/entities/CountPeople';
 import { IIncrement } from '../../models/IIncrement';
@@ -25,19 +24,8 @@ export class FakeCountPeopleRepository implements ICountPeopleRepository {
     );
 
     if (countPeople) {
-      countPeople.in = countPeople.in + 1;
-    }
-
-    return countPeople;
-  }
-
-  public async decrement(data: IDecrement): Promise<ICountPeople | undefined> {
-    const countPeople = this.countPeople.find(
-      countPeople => countPeople.id === data.id,
-    );
-
-    if (countPeople) {
-      countPeople.in = countPeople.in - 1;
+      countPeople.in += data.in;
+      countPeople.out += data.out;
     }
 
     return countPeople;

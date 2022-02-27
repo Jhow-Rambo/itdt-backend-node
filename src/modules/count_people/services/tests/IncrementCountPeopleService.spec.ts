@@ -1,10 +1,10 @@
 import { FakeCountPeopleRepository } from '@modules/count_people/domain/repositories/fakes/FakeCountPeopleRepository';
 import IncrementCountPeopleService from '../IncrementCountPeopleService';
-import CreateCountPopleService from '../CreateCountPeopleService';
+import CreateCountPeopleService from '../CreateCountPeopleService';
 
 let fakeCountPeopleRepository: FakeCountPeopleRepository;
 let incrementCountPeople: IncrementCountPeopleService;
-let createCountPeople: CreateCountPopleService;
+let createCountPeople: CreateCountPeopleService;
 
 describe('should be able to increment a number in a count people section', () => {
   beforeEach(() => {
@@ -12,7 +12,7 @@ describe('should be able to increment a number in a count people section', () =>
     incrementCountPeople = new IncrementCountPeopleService(
       fakeCountPeopleRepository,
     );
-    createCountPeople = new CreateCountPopleService(fakeCountPeopleRepository);
+    createCountPeople = new CreateCountPeopleService(fakeCountPeopleRepository);
   });
 
   it('should be able to increment a number in a count people section', async () => {
@@ -23,31 +23,15 @@ describe('should be able to increment a number in a count people section', () =>
     });
 
     const data = {
-      toten_id: countPeople.id,
+      toten_id: countPeople.toten_id,
+      in: 3,
+      out: 3,
       date: countPeople.date,
     };
 
     await incrementCountPeople.execute(data);
 
-    expect(countPeople.in).toBe(1);
-  });
-
-  it('should be able to create a new section if dates are diferent', async () => {
-    const date = new Date();
-
-    const countPeople = await createCountPeople.execute({
-      field_image: 'test',
-      toten_id: 'test',
-      date: date,
-    });
-
-    const data = {
-      toten_id: countPeople.id,
-      date: countPeople.date,
-    };
-
-    await incrementCountPeople.execute(data);
-
-    expect(countPeople).toHaveLength(2);
+    expect(countPeople.in).toBe(3);
+    expect(countPeople.out).toBe(3);
   });
 });
