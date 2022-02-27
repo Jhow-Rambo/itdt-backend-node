@@ -1,4 +1,4 @@
 export interface IDecrement {
-  id: string;
+  toten_id: string;
   date: Date;
 }

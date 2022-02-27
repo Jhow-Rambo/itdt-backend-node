@@ -38,9 +38,13 @@ export class CountPeopleRepository implements ICountPeopleRepository {
   }
 
   public async decrement(data: IDecrement): Promise<ICountPeople | undefined> {
-    await this.ormRepository.decrement({ id: data.id }, 'out', 1);
+    const id = await this.ormRepository.find({
+      where: { toten_id: data.toten_id },
+    });
+    // TODO: Need to chang id[0].id to last id
+    await this.ormRepository.decrement({ id: id[0].id }, 'out', 1);
 
-    return this.ormRepository.findOne(data.id);
+    return this.ormRepository.findOne(id[0].id);
   }
 
   public async findOne(id: string): Promise<ICountPeople | undefined> {
