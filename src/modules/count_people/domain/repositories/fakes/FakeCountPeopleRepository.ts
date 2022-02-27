@@ -19,16 +19,18 @@ export class FakeCountPeopleRepository implements ICountPeopleRepository {
   }
 
   public async increment(data: IIncrement): Promise<ICountPeople | undefined> {
-    const countPeople = this.countPeople.find(
+    const countPeople = this.countPeople.filter(
       countPeople => countPeople.toten_id === data.toten_id,
     );
 
+    const lastElement = countPeople.length - 1;
+
     if (countPeople) {
-      countPeople.in += data.in;
-      countPeople.out += data.out;
+      countPeople[lastElement].in += data.in;
+      countPeople[lastElement].out += data.out;
     }
 
-    return countPeople;
+    return countPeople[lastElement];
   }
 
   public async findOne(id: string): Promise<ICountPeople | undefined> {
@@ -37,6 +39,16 @@ export class FakeCountPeopleRepository implements ICountPeopleRepository {
     );
 
     return countPeople;
+  }
+
+  public async findLast(toten_id: string): Promise<ICountPeople | undefined> {
+    const countPeople = this.countPeople.filter(
+      countPeople => countPeople.id === toten_id,
+    );
+
+    const lastElement = countPeople.length - 1;
+
+    return countPeople[lastElement];
   }
 
   public async findByDate(date: Date): Promise<ICountPeople | undefined> {

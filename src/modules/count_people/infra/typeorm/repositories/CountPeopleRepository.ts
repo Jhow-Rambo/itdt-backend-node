@@ -27,20 +27,39 @@ export class CountPeopleRepository implements ICountPeopleRepository {
   }
 
   public async increment(data: IIncrement): Promise<ICountPeople | undefined> {
-    const id = await this.ormRepository.find({
+    const countPeople = await this.ormRepository.find({
       where: { toten_id: data.toten_id },
     });
 
-    // TODO: Need to chang id[0].id to last id
-    await this.ormRepository.increment({ id: id[0].id }, 'in', data.in);
+    const lastElement = countPeople.length - 1;
 
-    await this.ormRepository.increment({ id: id[0].id }, 'out', data.out);
+    await this.ormRepository.increment(
+      { id: countPeople[lastElement].id },
+      'in',
+      data.in,
+    );
 
-    return this.ormRepository.findOne(id[0].id);
+    await this.ormRepository.increment(
+      { id: countPeople[lastElement].id },
+      'out',
+      data.out,
+    );
+
+    return this.ormRepository.findOne(countPeople[lastElement].id);
   }
 
   public async findOne(id: string): Promise<ICountPeople | undefined> {
     return this.ormRepository.findOne(id);
+  }
+
+  public async findLast(toten_id: string): Promise<ICountPeople | undefined> {
+    const countPeople = await this.ormRepository.find({
+      where: { toten_id: toten_id },
+    });
+
+    const lastElement = countPeople.length - 1;
+
+    return countPeople[lastElement];
   }
 
   public async findByTotenId(

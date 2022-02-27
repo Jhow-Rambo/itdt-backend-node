@@ -34,4 +34,30 @@ describe('should be able to increment a number in a count people section', () =>
     expect(countPeople.in).toBe(3);
     expect(countPeople.out).toBe(3);
   });
+
+  it('should be able to increment the last countPeople line', async () => {
+    const countPeople1 = await createCountPeople.execute({
+      field_image: 'test',
+      toten_id: 'test',
+      date: new Date(),
+    });
+
+    const countPeople2 = await createCountPeople.execute({
+      field_image: 'test',
+      toten_id: 'test',
+      date: new Date(),
+    });
+
+    const data = {
+      toten_id: 'test',
+      in: 3,
+      out: 3,
+      date: new Date(),
+    };
+
+    await incrementCountPeople.execute(data);
+
+    expect(countPeople2.in).toBe(3);
+    expect(countPeople2.out).toBe(3);
+  });
 });
