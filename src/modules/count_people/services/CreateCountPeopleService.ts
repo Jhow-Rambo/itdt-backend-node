@@ -5,7 +5,7 @@ import { ICountPeople } from '../domain/models/ICountPeople';
 import { ICountPeopleRepository } from '../domain/repositories/ICountPeopleRepository';
 
 @injectable()
-export default class CreateCountPersonService {
+export default class CreateCountPeopleService {
   constructor(
     @inject('CountPeopleRepository')
     private countPeopleRepository: ICountPeopleRepository,

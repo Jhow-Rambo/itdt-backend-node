@@ -7,7 +7,7 @@ import { ICountPeopleRepository } from '../domain/repositories/ICountPeopleRepos
 @injectable()
 export default class IncrementCountPeopleService {
   constructor(
-    @inject('countPeopleRepository')
+    @inject('CountPeopleRepository')
     private countPeopleRepository: ICountPeopleRepository,
   ) {}
 
