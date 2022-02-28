@@ -10,7 +10,7 @@ countPeopleRouter.post(
   celebrate({
     [Segments.BODY]: {
       field_image: Joi.string().required(),
-      toten_id: Joi.string().required(),
+      totenId: Joi.string().required(),
       date: Joi.date().required(),
     },
   }),
@@ -21,7 +21,7 @@ countPeopleRouter.post(
   '/increment',
   celebrate({
     [Segments.BODY]: {
-      toten_id: Joi.string().required(),
+      totenId: Joi.string().required(),
       in: Joi.number().required(),
       out: Joi.number().required(),
       date: Joi.date().required(),

@@ -5,13 +5,13 @@ import IncrementCountPeopleService from '@modules/count_people/services/Incremen
 
 export default class CountPeopleController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { field_image, toten_id, date } = request.body;
+    const { field_image, totenId, date } = request.body;
 
     const createCountPeople = container.resolve(CreateCountPeopleService);
 
     const countPeople = await createCountPeople.execute({
       field_image,
-      toten_id,
+      totenId,
       date,
     });
 
@@ -22,12 +22,12 @@ export default class CountPeopleController {
     request: Request,
     response: Response,
   ): Promise<Response> {
-    const { toten_id, in: in_, out: out_, date } = request.body;
+    const { totenId, in: in_, out: out_, date } = request.body;
 
     const incrementCountPeople = container.resolve(IncrementCountPeopleService);
 
     const countPeople = await incrementCountPeople.execute({
-      toten_id,
+      totenId,
       in: in_,
       out: out_,
       date,

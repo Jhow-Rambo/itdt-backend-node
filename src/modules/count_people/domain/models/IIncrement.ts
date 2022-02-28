@@ -1,5 +1,5 @@
 export interface IIncrement {
-  toten_id: string;
+  totenId: string;
   in: number;
   out: number;
   date: Date;

@@ -1,5 +1,5 @@
 export interface ICreateCountPeople {
   field_image: string;
-  toten_id: string;
+  totenId: string;
   date: Date;
 }

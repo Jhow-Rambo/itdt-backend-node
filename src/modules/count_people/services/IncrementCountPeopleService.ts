@@ -14,6 +14,6 @@ export default class IncrementCountPeopleService {
   public async execute(data: IIncrement): Promise<ICountPeople | undefined> {
     await this.countPeopleRepository.increment(data);
 
-    return this.countPeopleRepository.findLast(data.toten_id);
+    return this.countPeopleRepository.findLast(data.totenId);
   }
 }

@@ -18,12 +18,12 @@ describe('should be able to increment a number in a count people section', () =>
   it('should be able to increment a number in a count people section', async () => {
     const countPeople = await createCountPeople.execute({
       field_image: 'test',
-      toten_id: 'test',
+      totenId: 'test',
       date: new Date(),
     });
 
     const data = {
-      toten_id: countPeople.toten_id,
+      totenId: countPeople.totenId,
       in: 3,
       out: 3,
       date: countPeople.date,
@@ -38,18 +38,18 @@ describe('should be able to increment a number in a count people section', () =>
   it('should be able to increment the last countPeople line', async () => {
     const countPeople1 = await createCountPeople.execute({
       field_image: 'test',
-      toten_id: 'test',
+      totenId: 'test',
       date: new Date(),
     });
 
     const countPeople2 = await createCountPeople.execute({
       field_image: 'test',
-      toten_id: 'test',
+      totenId: 'test',
       date: new Date(),
     });
 
     const data = {
-      toten_id: 'test',
+      totenId: 'test',
       in: 3,
       out: 3,
       date: new Date(),

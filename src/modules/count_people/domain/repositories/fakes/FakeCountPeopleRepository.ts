@@ -12,7 +12,7 @@ export class FakeCountPeopleRepository implements ICountPeopleRepository {
     totenId: string,
   ): Promise<ICountPeople[] | undefined> {
     const countPeople = this.countPeople.filter(
-      countPeople => countPeople.toten_id === totenId,
+      countPeople => countPeople.totenId === totenId,
     );
 
     return countPeople;
@@ -20,7 +20,7 @@ export class FakeCountPeopleRepository implements ICountPeopleRepository {
 
   public async increment(data: IIncrement): Promise<ICountPeople | undefined> {
     const countPeople = this.countPeople.filter(
-      countPeople => countPeople.toten_id === data.toten_id,
+      countPeople => countPeople.totenId === data.totenId,
     );
 
     const lastElement = countPeople.length - 1;
@@ -41,9 +41,9 @@ export class FakeCountPeopleRepository implements ICountPeopleRepository {
     return countPeople;
   }
 
-  public async findLast(toten_id: string): Promise<ICountPeople | undefined> {
+  public async findLast(totenId: string): Promise<ICountPeople | undefined> {
     const countPeople = this.countPeople.filter(
-      countPeople => countPeople.id === toten_id,
+      countPeople => countPeople.id === totenId,
     );
 
     const lastElement = countPeople.length - 1;
@@ -67,7 +67,7 @@ export class FakeCountPeopleRepository implements ICountPeopleRepository {
     countPeople.out = 0;
     countPeople.date = data.date;
     countPeople.field_image = data.field_image;
-    countPeople.toten_id = data.toten_id;
+    countPeople.totenId = data.totenId;
 
     this.countPeople.push(countPeople);
 

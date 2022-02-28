@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { ICountPeople } from '@modules/count_people/domain/models/ICountPeople';
+import Toten from '../../../../totens/infra/typeorm/entities/Toten';
 
 @Entity('count_people')
 class CountPeople implements ICountPeople {
@@ -19,7 +20,12 @@ class CountPeople implements ICountPeople {
   field_image: string;
 
   @Column()
-  toten_id: string;
+  totenId: string;
+
+  @ManyToOne(() => Toten, toten => toten.countPeople, {
+    onDelete: 'CASCADE',
+  })
+  toten: Toten;
 }
 
 export default CountPeople;

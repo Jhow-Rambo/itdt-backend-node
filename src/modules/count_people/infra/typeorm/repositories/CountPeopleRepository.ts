@@ -16,7 +16,7 @@ export class CountPeopleRepository implements ICountPeopleRepository {
     const countPeople = {
       in: 0,
       out: 0,
-      toten_id: data.toten_id,
+      totenId: data.totenId,
       field_image: data.field_image,
       date: data.date,
     };
@@ -28,7 +28,7 @@ export class CountPeopleRepository implements ICountPeopleRepository {
 
   public async increment(data: IIncrement): Promise<ICountPeople | undefined> {
     const countPeople = await this.ormRepository.find({
-      where: { toten_id: data.toten_id },
+      where: { totenId: data.totenId },
     });
 
     const lastElement = countPeople.length - 1;
@@ -52,9 +52,9 @@ export class CountPeopleRepository implements ICountPeopleRepository {
     return this.ormRepository.findOne(id);
   }
 
-  public async findLast(toten_id: string): Promise<ICountPeople | undefined> {
+  public async findLast(totenId: string): Promise<ICountPeople | undefined> {
     const countPeople = await this.ormRepository.find({
-      where: { toten_id: toten_id },
+      where: { totenId: totenId },
     });
 
     const lastElement = countPeople.length - 1;
@@ -65,7 +65,7 @@ export class CountPeopleRepository implements ICountPeopleRepository {
   public async findByTotenId(
     totenId: string,
   ): Promise<ICountPeople[] | undefined> {
-    return this.ormRepository.find({ where: { toten_id: totenId } });
+    return this.ormRepository.find({ where: { totenId: totenId } });
   }
 
   public async changeImage(

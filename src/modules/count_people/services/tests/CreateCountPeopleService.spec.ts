@@ -14,7 +14,7 @@ describe('should be able to create a new count section', () => {
   it('should be able to create a new count people section', async () => {
     const countPeople = await createCountPeople.execute({
       field_image: 'test',
-      toten_id: 'test',
+      totenId: 'test',
       date: new Date(),
     });
 
@@ -26,14 +26,14 @@ describe('should be able to create a new count section', () => {
 
     await createCountPeople.execute({
       field_image: 'test',
-      toten_id: 'test',
+      totenId: 'test',
       date: date,
     });
 
     await expect(
       createCountPeople.execute({
         field_image: 'test',
-        toten_id: 'test',
+        totenId: 'test',
         date: date,
       }),
     ).rejects.toBeInstanceOf(AppError);

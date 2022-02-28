@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import CountPeople from '../../../../count_people/infra/typeorm/entities/CountPeople';
 
 @Entity('totens')
 class Toten implements IToten {
@@ -28,6 +29,12 @@ class Toten implements IToten {
     onDelete: 'CASCADE',
   })
   inferences: Inference[];
+
+  @OneToMany(() => CountPeople, countPeople => countPeople.toten, {
+    eager: true,
+    onDelete: 'CASCADE',
+  })
+  countPeople: CountPeople[];
 
   @CreateDateColumn()
   created_at: Date;
