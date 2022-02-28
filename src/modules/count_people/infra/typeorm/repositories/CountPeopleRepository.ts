@@ -21,7 +21,7 @@ export class CountPeopleRepository implements ICountPeopleRepository {
       date: data.date,
     };
 
-    const savedCountPeople = await this.ormRepository.create(countPeople);
+    const savedCountPeople = await this.ormRepository.save(countPeople);
 
     return savedCountPeople;
   }

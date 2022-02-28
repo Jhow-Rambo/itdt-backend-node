@@ -1,7 +1,8 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ICountPeople } from '@modules/count_people/domain/models/ICountPeople';
 
 @Entity('count_people')
-class CountPeople {
+class CountPeople implements ICountPeople {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

@@ -22,8 +22,8 @@ countPeopleRouter.post(
   celebrate({
     [Segments.BODY]: {
       toten_id: Joi.string().required(),
-      in: Joi.string().required(),
-      out: Joi.string().required(),
+      in: Joi.number().required(),
+      out: Joi.number().required(),
       date: Joi.date().required(),
     },
   }),
