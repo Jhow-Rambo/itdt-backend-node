@@ -5,7 +5,9 @@ import IncrementCountPeopleService from '@modules/count_people/services/Incremen
 
 export default class CountPeopleController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { field_image, totenId, date } = request.body;
+    const { field_image, date } = request.body;
+
+    const { totenId } = request.params;
 
     const createCountPeople = container.resolve(CreateCountPeopleService);
 
