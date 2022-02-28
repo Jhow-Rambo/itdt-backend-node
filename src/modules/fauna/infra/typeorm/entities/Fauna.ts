@@ -8,8 +8,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('inferences')
-class Inference {
+@Entity('fauna')
+class Fauna {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -37,4 +37,4 @@ class Inference {
   updated_at: Date;
 }
 
-export default Inference;
+export default Fauna;

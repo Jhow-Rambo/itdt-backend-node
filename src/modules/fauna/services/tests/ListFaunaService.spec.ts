@@ -1,8 +1,8 @@
-import { FakeInferenceRepository } from '@modules/inference/domain/repositories/fakes/FakeInferenceRepository';
-import ListInferenceService from '../ListInferenceService';
+import { FakeFaunaRepository } from '@modules/fauna/domain/repositories/fakes/FakeFaunaRepository';
+import ListFaunaService from '../ListFaunaService';
 
-let fakeInferenceRepository: FakeInferenceRepository;
-let listInference: ListInferenceService;
+let fakeInferenceRepository: FakeFaunaRepository;
+let listInference: ListFaunaService;
 
 const fakeInference1 = {
   normal_image: 'normal_image',
@@ -20,8 +20,8 @@ const fakeInference2 = {
 
 describe('ListInference', () => {
   beforeEach(() => {
-    fakeInferenceRepository = new FakeInferenceRepository();
-    listInference = new ListInferenceService(fakeInferenceRepository);
+    fakeInferenceRepository = new FakeFaunaRepository();
+    listInference = new ListFaunaService(fakeInferenceRepository);
   });
 
   it('should be able to return all inferences', async () => {

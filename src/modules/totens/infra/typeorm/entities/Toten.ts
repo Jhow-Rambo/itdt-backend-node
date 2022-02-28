@@ -1,4 +1,4 @@
-import Inference from '../../../../inference/infra/typeorm/entities/Inference';
+import Fauna from '../../../../fauna/infra/typeorm/entities/Fauna';
 import { IToten } from '@modules/totens/domain/models/IToten';
 import {
   Column,
@@ -24,11 +24,11 @@ class Toten implements IToten {
   @Column()
   localization: string;
 
-  @OneToMany(() => Inference, inference => inference.toten, {
+  @OneToMany(() => Fauna, inference => inference.toten, {
     eager: true,
     onDelete: 'CASCADE',
   })
-  inferences: Inference[];
+  inferences: Fauna[];
 
   @OneToMany(() => CountPeople, countPeople => countPeople.toten, {
     eager: true,

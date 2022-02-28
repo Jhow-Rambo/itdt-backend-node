@@ -1,19 +1,19 @@
 import { Router } from 'express';
-import InferencesController from '../controllers/InferencesController';
+import FaunaController from '../controllers/FaunaController';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { UploadImages } from '../../../middlewares/Upload-Images';
 import { AddPathImagesToBody } from '../../../middlewares/AddPathImagesToBody';
 
-const inferencesRouter = Router();
-const inferencesController = new InferencesController();
+const faunaRouter = Router();
+const faunaController = new FaunaController();
 
-inferencesRouter.get('/', inferencesController.list);
+faunaRouter.get('/', faunaController.list);
 
 // removed two lines below
 //  UploadImages(),
 // AddPathImagesToBody(),
 
-inferencesRouter.post(
+faunaRouter.post(
   '/:totenId',
   celebrate({
     [Segments.BODY]: {
@@ -25,7 +25,7 @@ inferencesRouter.post(
       totenId: Joi.string().uuid().required(),
     },
   }),
-  inferencesController.create,
+  faunaController.create,
 );
 
-export default inferencesRouter;
+export default faunaRouter;

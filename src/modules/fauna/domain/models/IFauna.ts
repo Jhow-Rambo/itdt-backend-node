@@ -1,4 +1,4 @@
-export interface IInference {
+export interface IFauna {
   id: string;
   normal_image: string;
   inferred_image: string;
