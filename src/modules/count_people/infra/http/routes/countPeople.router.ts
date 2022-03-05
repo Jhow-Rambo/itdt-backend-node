@@ -20,13 +20,15 @@ countPeopleRouter.post(
 );
 
 countPeopleRouter.post(
-  '/increment',
+  '/increment/:totenId',
   celebrate({
     [Segments.BODY]: {
-      totenId: Joi.string().uuid().required(),
       in: Joi.number().required(),
       out: Joi.number().required(),
       date: Joi.date().required(),
+    },
+    [Segments.PARAMS]: {
+      totenId: Joi.string().uuid().required(),
     },
   }),
   countPeopleController.increment,
@@ -36,7 +38,7 @@ countPeopleRouter.get(
   '/:totenId',
   celebrate({
     [Segments.PARAMS]: {
-      totenId: Joi.string().required(),
+      totenId: Joi.string().uuid().required(),
     },
   }),
   countPeopleController.findByTotenId,

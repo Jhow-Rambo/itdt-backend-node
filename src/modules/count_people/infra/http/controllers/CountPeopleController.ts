@@ -25,7 +25,9 @@ export default class CountPeopleController {
     request: Request,
     response: Response,
   ): Promise<Response> {
-    const { totenId, in: in_, out: out_, date } = request.body;
+    const { in: in_, out: out_, date } = request.body;
+
+    const { totenId } = request.params;
 
     const incrementCountPeople = container.resolve(IncrementCountPeopleService);
 
