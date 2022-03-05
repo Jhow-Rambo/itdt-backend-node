@@ -4,15 +4,16 @@ import { ICountPeople } from '../../models/ICountPeople';
 import { ICreateCountPeople } from '../../models/ICreateCountPeople';
 import CountPeople from '@modules/count_people/infra/typeorm/entities/CountPeople';
 import { IIncrement } from '../../models/IIncrement';
+import { IListCountPeople } from '../../models/IListCountPeople';
 
 export class FakeCountPeopleRepository implements ICountPeopleRepository {
   private countPeople: ICountPeople[] = [];
 
   public async findByTotenId(
-    totenId: string,
+    data: IListCountPeople,
   ): Promise<ICountPeople[] | undefined> {
     const countPeople = this.countPeople.filter(
-      countPeople => countPeople.totenId === totenId,
+      countPeople => countPeople.totenId === data.totenId,
     );
 
     return countPeople;

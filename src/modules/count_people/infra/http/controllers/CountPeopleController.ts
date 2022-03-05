@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import CreateCountPeopleService from '@modules/count_people/services/CreateCountPeopleService';
 import IncrementCountPeopleService from '@modules/count_people/services/IncrementCountPeopleService';
+import ListCountPeopleService from '@modules/count_people/services/ListCountPeopleService';
 
 export default class CountPeopleController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -34,6 +35,19 @@ export default class CountPeopleController {
       out: out_,
       date,
     });
+
+    return response.status(200).json(countPeople);
+  }
+
+  public async findByTotenId(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { totenId } = request.params;
+
+    const listCountPeople = container.resolve(ListCountPeopleService);
+
+    const countPeople = await listCountPeople.execute(totenId);
 
     return response.status(200).json(countPeople);
   }

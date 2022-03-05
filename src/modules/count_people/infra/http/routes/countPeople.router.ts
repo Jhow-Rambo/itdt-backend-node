@@ -32,4 +32,14 @@ countPeopleRouter.post(
   countPeopleController.increment,
 );
 
+countPeopleRouter.get(
+  '/:totenId',
+  celebrate({
+    [Segments.PARAMS]: {
+      totenId: Joi.string().required(),
+    },
+  }),
+  countPeopleController.findByTotenId,
+);
+
 export default countPeopleRouter;

@@ -7,7 +7,7 @@ export interface ICountPeopleRepository {
   increment(data: IIncrement): Promise<ICountPeople | undefined>;
   findOne(id: string): Promise<ICountPeople | undefined>;
   findLast(totenId: string): Promise<ICountPeople | undefined>;
-  findByTotenId(totenId: string): Promise<ICountPeople[] | undefined>;
+  findByTotenId(data: string): Promise<ICountPeople[] | undefined>;
   findByDate(date: Date): Promise<ICountPeople | undefined>;
   changeImage(id: string, image: string): Promise<ICountPeople | undefined>;
 }
